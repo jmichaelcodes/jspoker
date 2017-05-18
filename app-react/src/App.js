@@ -26,6 +26,7 @@ class App extends Component {
     this.addCardsToDeck = this.addCardsToDeck.bind(this)
     this.setHand = this.setHand.bind(this)
     this.shuffle = this.shuffle.bind(this)
+    this.clearArrays = this.clearArrays.bind(this)
 
   }
 
@@ -41,7 +42,14 @@ class App extends Component {
     this.setHand()
   }
 
+  clearArrays() {
+    this.setState({deck: []})
+    this.setState({hand: []})
+    alert('You may now shuffle')
+  }
+
 addCardsToDeck(ofSuit){
+  // this.setState({deck: []})
     for (var i = 2; i < 11; i++) {
     this.setState({ deck: this.state.deck.push(i + ofSuit)})
   }
@@ -55,7 +63,7 @@ addCardsToDeck(ofSuit){
 }
 
 setHand() {
-
+  // this.setState({hand: []})
   for (var i = 0; i < 5; i++) {
     var j = Math.floor(Math.random() * this.state.deck.length - 1) + 1
     console.log(j)
@@ -84,7 +92,9 @@ setHand() {
         </div>
         <Cards card1={this.state.card1} card2={this.state.card2} card3={this.state.card3} card4={this.state.card4} card5={this.state.card5} />
         <br/><br/><br/> 
+        <div className="btn btn-lg btn-primary" onClick={this.clearArrays}>Prepare to Shuffle</div>        
         <div className="btn btn-lg btn-success" onClick={this.shuffle}>Shuffle</div>
+
       </div>
     );
   }
